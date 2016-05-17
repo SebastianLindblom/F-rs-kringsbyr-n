@@ -92,7 +92,7 @@
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(889, 665);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Exportera årsöversikt till Excel";
@@ -155,13 +155,6 @@
             // 
             this.cbÅrsöversiktÅr.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbÅrsöversiktÅr.FormattingEnabled = true;
-            this.cbÅrsöversiktÅr.Items.AddRange(new object[] {
-            "2015",
-            "2014",
-            "2013",
-            "2012",
-            "2011",
-            "2010"});
             this.cbÅrsöversiktÅr.Location = new System.Drawing.Point(143, 62);
             this.cbÅrsöversiktÅr.Name = "cbÅrsöversiktÅr";
             this.cbÅrsöversiktÅr.Size = new System.Drawing.Size(96, 21);
@@ -213,7 +206,7 @@
             this.tabPage2.Controls.Add(this.label15);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(889, 665);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Visa månadsöversikt";
@@ -296,13 +289,6 @@
             // 
             this.cbMånadsöversiktÅr.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbMånadsöversiktÅr.FormattingEnabled = true;
-            this.cbMånadsöversiktÅr.Items.AddRange(new object[] {
-            "2015",
-            "2014",
-            "2013",
-            "2012",
-            "2011",
-            "2010"});
             this.cbMånadsöversiktÅr.Location = new System.Drawing.Point(223, 24);
             this.cbMånadsöversiktÅr.Name = "cbMånadsöversiktÅr";
             this.cbMånadsöversiktÅr.Size = new System.Drawing.Size(78, 21);

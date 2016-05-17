@@ -24,48 +24,50 @@ namespace Business.Calculations
                 int AntalÖVR = 0;
                 int AntalFÖR = 0;
 
-                foreach (AnsökningFöretag af in an.AnsökningFöretag.Where(x => (x.Betalddatum + "indexabletext").Substring(0, 6).Contains(string.Concat(år + månad))))
+                if (!år.Equals("") && !månad.Equals(""))
                 {
-                    förSumAck = +Tool.decimalMaker(af.Premie);
-                    AntalFÖR++;
-                }
-                foreach (AnsökningÖvrig aö in an.AnsökningÖvrig.Where(x => (x.Betaldatum + "indexabletext").Substring(0, 6).Contains(string.Concat(år + månad))))
-                {
-                    övrProv = +Tool.decimalMaker(aö.Premie);
-                    AntalÖVR++;
-                }
-                foreach (AnsökningPrivat ap in an.AnsökningPrivat.Where(x => (x.betaldatum + "indexabletext").Substring(0, 6).Contains(string.Concat(år + månad))))
-                {
-
-
-                    foreach (AnsökningensTillval at in ap.AnsökningensTillval)
+                    foreach (AnsökningFöretag af in an.AnsökningFöretag.Where(x => (x.Betalddatum + "indexabletext").Substring(0, 6).Contains(string.Concat(år + månad))))
                     {
-                        if (at.Tillval.Typ.ToLower().Contains("liv"))
-                            if (at.Tillval.Typ.ToLower().Contains("höj"))
-                            {
-                                livSumAck += (Tool.decimalMaker(ap.Tillvalsbelopp) * Tool.decimalMaker(at.Tillval.TillvalsVariabler.Variabeln));
-                            }
-                            else
-                            {
-                                livSumAck += (Tool.decimalMaker(at.Tillval.Belopp) * Tool.decimalMaker(at.Tillval.Belopp));
-                            }
-                        else if (at.Tillval.Typ.ToLower().Contains("barn")) buSumAck += (Tool.decimalMaker(at.Tillval.Belopp) * Tool.decimalMaker(at.Tillval.TillvalsVariabler.Variabeln));
-                        else if (at.Tillval.Typ.ToLower().Contains("vuxen")) vuSumAck += (Tool.decimalMaker(at.Tillval.Belopp) * Tool.decimalMaker(at.Tillval.TillvalsVariabler.Variabeln));
+                        förSumAck = +Tool.decimalMaker(af.Premie);
+                        AntalFÖR++;
                     }
-                    if (ap.GrundbeloppAckvärde != null)
+                    foreach (AnsökningÖvrig aö in an.AnsökningÖvrig.Where(x => (x.Betaldatum + "indexabletext").Substring(0, 6).Contains(string.Concat(år + månad))))
                     {
-                        if (ap.GrundbeloppAckvärde.typavförsäkring.ToLower().Contains("barn")) { buSumAck += Tool.decimalMaker(ap.GrundbeloppAckvärde.ackvärde); AntalSOB++; }
-                        else if (ap.GrundbeloppAckvärde.typavförsäkring.ToLower().Contains("vuxen")) { vuSumAck += Tool.decimalMaker(ap.GrundbeloppAckvärde.ackvärde); AntalSOV++; }
+                        övrProv = +Tool.decimalMaker(aö.Premie);
+                        AntalÖVR++;
+                    }
+                    foreach (AnsökningPrivat ap in an.AnsökningPrivat.Where(x => (x.betaldatum + "indexabletext").Substring(0, 6).Contains(string.Concat(år + månad))))
+                    {
 
 
+                        foreach (AnsökningensTillval at in ap.AnsökningensTillval)
+                        {
+                            if (at.Tillval.Typ.ToLower().Contains("liv"))
+                                if (at.Tillval.Typ.ToLower().Contains("höj"))
+                                {
+                                    livSumAck += (Tool.decimalMaker(ap.Tillvalsbelopp) * Tool.decimalMaker(at.Tillval.TillvalsVariabler.Variabeln));
+                                }
+                                else
+                                {
+                                    livSumAck += (Tool.decimalMaker(at.Tillval.Belopp) * Tool.decimalMaker(at.Tillval.Belopp));
+                                }
+                            else if (at.Tillval.Typ.ToLower().Contains("barn")) buSumAck += (Tool.decimalMaker(at.Tillval.Belopp) * Tool.decimalMaker(at.Tillval.TillvalsVariabler.Variabeln));
+                            else if (at.Tillval.Typ.ToLower().Contains("vuxen")) vuSumAck += (Tool.decimalMaker(at.Tillval.Belopp) * Tool.decimalMaker(at.Tillval.TillvalsVariabler.Variabeln));
+                        }
+                        if (ap.GrundbeloppAckvärde != null)
+                        {
+                            if (ap.GrundbeloppAckvärde.typavförsäkring.ToLower().Contains("barn")) { buSumAck += Tool.decimalMaker(ap.GrundbeloppAckvärde.ackvärde); AntalSOB++; }
+                            else if (ap.GrundbeloppAckvärde.typavförsäkring.ToLower().Contains("vuxen")) { vuSumAck += Tool.decimalMaker(ap.GrundbeloppAckvärde.ackvärde); AntalSOV++; }
+
+
+                        }
+                        else if (ap.Livsförsäkringar != null)
+                        {
+                            livSumAck += Convert.ToDouble(ap.Livsförsäkringar.Grundbelopp) * Tool.decimalMaker(ap.Livsförsäkringar.Variabler.Variabel);
+                        }
                     }
-                    else if (ap.Livsförsäkringar != null)
-                    {
-                        livSumAck += Convert.ToDouble(ap.Livsförsäkringar.Grundbelopp) * Tool.decimalMaker(ap.Livsförsäkringar.Variabler.Variabel);
-                    }
+
                 }
-
-
 
 
 

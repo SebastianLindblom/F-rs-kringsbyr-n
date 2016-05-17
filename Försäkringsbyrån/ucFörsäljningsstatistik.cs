@@ -51,8 +51,8 @@ namespace Försäkringsbyrån
             int Årsreferens = DateTime.Now.Year - 4;
             for (int x = 0; x < 5; x++)
             {
-                cbÅrsöversiktÅr.Items.Add(Årsreferens + x);
-                cbMånadsöversiktÅr.Items.Add(Årsreferens + x);
+                if (!cbÅrsöversiktÅr.Items.Contains(Årsreferens + x)) cbÅrsöversiktÅr.Items.Add(Årsreferens + x);
+                if(!cbMånadsöversiktÅr.Items.Contains(Årsreferens + x)) cbMånadsöversiktÅr.Items.Add(Årsreferens + x);
             }
         }
 
